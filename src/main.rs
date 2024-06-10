@@ -6,6 +6,7 @@ use std::io;
 // Logger Struct
 struct LoggerCalls;
 
+// Function implmentation for logger struct
 impl LoggerCalls {
     fn debug_call(&self, message: &str) {
         debug!("{}", message);
