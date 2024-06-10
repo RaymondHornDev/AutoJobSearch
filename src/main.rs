@@ -3,6 +3,7 @@ use actix_web::{web, App, HttpServer, HttpResponse};
 use log::{debug, info};
 use std::io;
 
+// Logger Struct
 struct LoggerCalls;
 
 impl LoggerCalls {
