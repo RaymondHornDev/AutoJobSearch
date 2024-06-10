@@ -1,12 +1,12 @@
 /* Crates */
 use actix_web::{web, App, HttpServer, HttpResponse};
-use log::{debug, info};
+use log::debug;
 use std::io;
 
 // Logger Struct
 struct LoggerCalls;
 
-// Function implmentation for logger struct
+// Function implementation for logger struct
 impl LoggerCalls {
     fn debug_call(&self, message: &str) {
         debug!("{}", message);
@@ -33,12 +33,20 @@ async fn join_us() -> HttpResponse {
 
 #[actix_web::main]
 async fn main() -> Result<(), std::io::Error> {
+    // Initialize the logger
+    env_logger::init();
+
     HttpServer::new(|| {
         App::new()
-            .service(web::resource("/").to(home))
-            .service(web::resource("/about_us").to(about_us))
-            .service(web::resource("/join_us").to(join_us))
+            .route("/", web::get().to(home))
+            .route("/about_us", web::get().to(about_us))
+            .route("/join_us", web::get().to(join_us))
     })
+    .bind("127.0.0.1:8080")?
+    .run()
+    .await
+}
+
     .bind("127.0.0.1:8080")?
     .run()
     .await
