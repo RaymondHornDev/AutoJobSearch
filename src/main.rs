@@ -1,6 +1,5 @@
 /* Simple Rust backend */
 /* Simple Rust backend */
-/* Simple Rust backend */
 
 
 // Crates
